@@ -16,7 +16,6 @@ import styles from './Home.css';
 import InitiativeCard from './InitiativeCard';
 import { autoUpdater } from 'electron';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   cardHolder: {
     width: 'auto',
     float: 'left',
-    padding: '10px;'
+    padding: '10px;',
   },
 }));
 
@@ -66,15 +65,19 @@ export default function Home(): JSX.Element {
     setOpen(false);
   };
 
-  return (
-    <div className={styles.container} data-tid="container">
-      <div className={classes.root}>
-        <h2>Home</h2>
-        <div>
-          <Link to={routes.COUNTER}>to Counter</Link>
-        </div>
+  const handleClick = (actionName) => {
+    console.log('handling a click from ' + actionName);
+    // go to the new initiative entry
+    handleClose();
+  };
 
-        <SpeedDial
+  // const handleClick = () => {
+  //   console.log('handling the clikcs omg');
+  // };
+
+  return (
+    <div>
+       <SpeedDial
           ariaLabel="SpeedDial tooltip example"
           className={classes.speedDial}
           hidden={hidden}
@@ -90,29 +93,56 @@ export default function Home(): JSX.Element {
               icon={action.icon}
               tooltipTitle={action.name}
               tooltipOpen
-              onClick={handleClose}
+              onClick={() => handleClick(action.name)}
             />
           ))}
         </SpeedDial>
+    <div className={styles.container} data-tid="container">
+      <div className={classes.root}>
+        <h2>Intent</h2>
+        <div>
+          <Link to={routes.COUNTER}>to Counter</Link>
+        </div>
         {/* ///////////////////////////////////
         CARDS
         /////////////////////////////////// */}
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
-        <div className={classes.cardHolder}><InitiativeCard /></div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
+        <div className={classes.cardHolder}>
+          <InitiativeCard />
+        </div>
         {/* //////////////////////////////////////// */}
         {/* <Avatar variant="rounded" className={classes.rounded}>
           S
         </Avatar> */}
         {/* <Button onClick={handleVisibility}>Toggle Speed Dial</Button> */}
       </div>
+    </div>
     </div>
   );
 }
